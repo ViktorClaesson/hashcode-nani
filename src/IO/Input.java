@@ -9,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,20 +29,24 @@ public class Input implements InputReader {
                 BufferedReader br = new BufferedReader(new FileReader(new File("").getAbsolutePath() + "/inputs/" + fileName));
                 List<String> lines = br.lines().collect(Collectors.toList());
                 config = Config.parse(lines.get(0));
-                List<Ride> rides = lines.subList(1, lines.size()).stream().map(line -> createRide(line)).collect(Collectors.toList());
-            } catch (FileNotFoundException e) {
+                lines.remove(0);
+                List<Ride> rides = new ArrayList<>();
+                for(int i = 0; i < lines.size();i++){
+                    rides.add(createRide(i, lines.get(i)));
+                }
+                } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
         }
     }
 
-    private Ride createRide(String line) {
+    private Ride createRide(int id, String line) {
         String[] splitLines = line.split(" ");
         List<Integer> numbers = Arrays.stream(line.split(" ")).map(i -> Integer.parseInt(i)).collect(Collectors.toList());
         Point from = new Point(numbers.get(0), numbers.get(1));
         Point to = new Point(numbers.get(1), numbers.get(2));
         TimeSpan ts = new TimeSpan(numbers.get(3), numbers.get(4));
-        return new Ride(from, to, ts);
+        return new Ride(id, from, to, ts);
     }
 
     @Override
