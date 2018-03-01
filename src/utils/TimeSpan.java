@@ -15,4 +15,8 @@ public class TimeSpan {
     public int getFinish() {
         return finish;
     }
+
+    public int getTotalTime(){
+        return start + finish;
+    }
 }
