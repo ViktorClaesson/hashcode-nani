@@ -1,6 +1,6 @@
 package car;
 
-import point.Point;
+import utils.Point;
 
 public class Car {
 	private Point pos;
