@@ -27,6 +27,7 @@ public class RideCalc {
             if (canGetInTime && rideTime < bestRideTime) {
                 //find best ride car can make it to.
                 bestRide = ride;
+                bestRideTime = rideTime;
             }
         }
         //no more rides.
@@ -37,7 +38,7 @@ public class RideCalc {
         rides.remove(bestRide);
         //move car time and position.
         car.currentPosition = bestRide.getTo();
-        car.addPassenger(bestRide);
+        car.rides.add(bestRide);
         car.lastTime = atTime + bestRideTime + bestRide.getTimeSpan().getFinish() - bestRide.getTimeSpan().getStart();
         return true;
     }

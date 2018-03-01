@@ -21,6 +21,6 @@ public class TimeSpan {
     }
 
     public boolean withinSpan(int time){
-        return (start < time && time < finish);
+        return (start <= time && time <= finish);
     }
 }

@@ -9,7 +9,7 @@ import java.util.StringJoiner;
 public class Car {
 	private int timeLeft;
 	private Point pos;
-	private List<Ride> rides;
+	public List<Ride> rides;
 	public int currentTime;
 	public Point currentPosition;
 
@@ -27,7 +27,7 @@ public class Car {
 		tempo +=currentPosition.distanceTo(ride.getFrom());
 		tempo +=((ride.getTimeSpan().getStart())-currentTime);
 		return tempo;
-	}
+    }
 
 	public boolean addPassenger(Ride ride) {
 		int rideDistance = pos.distanceTo(ride.getFrom()) + ride.getDistance();
