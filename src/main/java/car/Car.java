@@ -43,6 +43,10 @@ public class Car {
 		}
 	}
 
+	public Point lastPosition(){
+		return rides.get(rides.size()-1).getTo();
+	}
+
 	@Override
 	public String toString() {
 		StringJoiner joiner = new StringJoiner(" ");
