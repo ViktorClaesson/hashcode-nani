@@ -7,42 +7,35 @@ import java.util.List;
 import java.util.StringJoiner;
 
 public class Car {
-	private int id;
 	private int timeLeft;
 	private Point pos;
-	private ArrayList<Ride> rides;
-	private List<Integer> acceptedRides;
+	private List<Ride> rides;
 	public int currentTime;
 	public Point currentPosition;
 
 	public int lastTime;
 
-	public Car(int id, int timeLeft) {
-		this.id = id;
+	public Car(int timeLeft) {
 		pos = new Point(0, 0);
 		this.timeLeft = timeLeft;
+		lastTime = 0;
 		rides = new ArrayList<>();
-		int currentTime = 0;
 	}
 
-	public boolean addPassenger(Ride ride, int lastTime) {
-		if (canYouGetThereOnTime(ride.getFrom(), pos.distanceTo(ride.getFrom()))) {
+	public int optimalRoute(Ride ride){
+		int tempo = 0;
+		tempo +=currentPosition.distanceTo(ride.getFrom());
+		tempo +=((ride.getTimeSpan().getStart())-currentTime);
+		return tempo;
+	}
+
+	public boolean addPassenger(Ride ride) {
+		int rideDistance = pos.distanceTo(ride.getFrom()) + ride.getDistance();
+		if (rideDistance <= timeLeft && currentTime + rideDistance <= ride.getTimeSpan().getFinish()) {
 			rides.add(ride);
-			acceptedRides.add(ride.getId());
-			timeLeft -= ride.getTimeSpan().getTotalTime();
-			this.lastTime = lastTime;
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	public boolean isThereEnoughTime(int time) {
-		return (timeLeft >= time);
-	}
-
-	public boolean canYouGetThereOnTime(Point pickUpPoint, int time) {
-		if (isThereEnoughTime(time) && pos.distanceTo(pickUpPoint) < time) {
+			timeLeft -= rideDistance;
+			currentTime += rideDistance;
+			pos = ride.getTo();
 			return true;
 		} else {
 			return false;
@@ -60,7 +53,7 @@ public class Car {
 	public String toString() {
 		StringJoiner joiner = new StringJoiner(" ");
 		joiner.add(Integer.toString(rides.size()));
-		acceptedRides.forEach(id -> joiner.add(Integer.toString(id)));
+		rides.forEach(ride -> joiner.add(Integer.toString(ride.getId())));
 		return joiner.toString();
 	}
 }

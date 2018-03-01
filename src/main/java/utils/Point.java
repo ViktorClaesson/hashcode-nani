@@ -43,20 +43,8 @@ public class Point {
     }
 
     public int distanceTo(Point point){
-        int dX;
-        int dY;
-
-        if ((point.x - this.x) < 0){
-            dX = -(point.x - this.x);
-        } else {
-            dX = (point.x - this.x);
-        }
-
-        if ((point.y - this.y) < 0){
-            dY = -(point.y - this.y);
-        } else {
-            dY = (point.y - this.y);
-        }
+        int dX = Math.abs(point.x - x);
+        int dY = Math.abs(point.y - y);
 
         return (dX + dY);
     }

@@ -29,4 +29,8 @@ public class Ride {
     public int getId() {
         return id;
     }
+
+    public int getDistance() {
+        return from.distanceTo(to);
+    }
 }

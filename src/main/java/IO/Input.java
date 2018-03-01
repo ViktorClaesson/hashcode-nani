@@ -26,11 +26,11 @@ public class Input implements InputReader {
     private void init(String fileName) {
         {
             try {
-                BufferedReader br = new BufferedReader(new FileReader(new File("").getAbsolutePath() + "/inputs/" + fileName));
+                BufferedReader br = new BufferedReader(new FileReader(getClass().getResource(fileName).getPath()));
                 List<String> lines = br.lines().collect(Collectors.toList());
                 config = Config.parse(lines.get(0));
                 lines.remove(0);
-                List<Ride> rides = new ArrayList<>();
+                rides = new ArrayList<>();
                 for(int i = 0; i < lines.size();i++){
                     rides.add(createRide(i, lines.get(i)));
                 }
@@ -44,8 +44,8 @@ public class Input implements InputReader {
         String[] splitLines = line.split(" ");
         List<Integer> numbers = Arrays.stream(line.split(" ")).map(i -> Integer.parseInt(i)).collect(Collectors.toList());
         Point from = new Point(numbers.get(0), numbers.get(1));
-        Point to = new Point(numbers.get(1), numbers.get(2));
-        TimeSpan ts = new TimeSpan(numbers.get(3), numbers.get(4));
+        Point to = new Point(numbers.get(2), numbers.get(3));
+        TimeSpan ts = new TimeSpan(numbers.get(4), numbers.get(5));
         return new Ride(id, from, to, ts);
     }
 
