@@ -3,29 +3,32 @@ package IO;
 import car.Ride;
 import utils.Config;
 import utils.Point;
+import utils.TimeSpan;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Input implements InputReader {
-    BufferedReader br;
-    Config config;
+    private Config config;
+    private List<Ride> rides;
 
-    public Input() {
-        init();
+    public Input(String fileName) {
+        init(fileName);
     }
 
 
-    private void init() {
+    private void init(String fileName) {
         {
             try {
-                br = new BufferedReader(new FileReader(getClass().getResource("a_example.in").getPath()));
+                BufferedReader br = new BufferedReader(new FileReader(new File("").getAbsolutePath() + "/inputs/" + fileName));
                 List<String> lines = br.lines().collect(Collectors.toList());
                 config = Config.parse(lines.get(0));
-                List<Ride> rides = lines.subList(1, lines.size()).stream().map(line -> createRide(line));
+                List<Ride> rides = lines.subList(1, lines.size()).stream().map(line -> createRide(line)).collect(Collectors.toList());
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
@@ -34,11 +37,12 @@ public class Input implements InputReader {
 
     private Ride createRide(String line) {
         String[] splitLines = line.split(" ");
-        Point from = new Point(Integer.parseInt(splitLines[0], Integer.parseInt(splitLines[1])));
-        Point to = new Point(Integer.parseInt(splitLines[2], Integer.parseInt(splitLines[3])));
-        return x;
+        List<Integer> numbers = Arrays.stream(line.split(" ")).map(i -> Integer.parseInt(i)).collect(Collectors.toList());
+        Point from = new Point(numbers.get(0), numbers.get(1));
+        Point to = new Point(numbers.get(1), numbers.get(2));
+        TimeSpan ts = new TimeSpan(numbers.get(3), numbers.get(4));
+        return new Ride(from, to, ts);
     }
-
 
     @Override
     public Config readConfig() {
@@ -47,6 +51,6 @@ public class Input implements InputReader {
 
     @Override
     public List<Ride> readRides() {
-        return null;
+        return rides;
     }
 }
