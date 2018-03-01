@@ -11,7 +11,7 @@ public class Car {
 		pos = new Point(x,y);
 		this.timeLeft = timeLeft;
 	}
-	
+
 	public boolean addPassenger(){
 		if (!hasPassenger){
 			return hasPassenger = true;
