@@ -13,11 +13,14 @@ public class Car {
 	private ArrayList<Ride> rides;
 	private List<Integer> acceptedRides;
 
+	public int lastTime;
+
 	public Car(int id, int timeLeft) {
 		this.id = id;
 		pos = new Point(0, 0);
 		this.timeLeft = timeLeft;
 		rides = new ArrayList<>();
+		lastTime = 0;
 	}
 
 	public boolean addPassenger(Ride ride) {
