@@ -1,12 +1,13 @@
 package car;
 
+import point.Point;
+
 public class Car {
-	private int x,y;
+	private Point pos;
 	private boolean hasPassanger;
 
 	public Car (int x, int y){
-		this.x = x;
-		this.y = y;
+		pos = new Point(x,y);
 	}
 
 	public boolean addPassanger(){
