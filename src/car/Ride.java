@@ -19,4 +19,8 @@ public class Ride {
     public Point getto(){
         return to;
     }
+
+    public TimeSpan getTimeSpan(){
+        return timeSpan;
+    }
 }
