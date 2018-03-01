@@ -33,7 +33,7 @@ public class Car {
 		int rideDistance = pos.distanceTo(ride.getFrom()) + ride.getDistance();
 		if (rideDistance <= timeLeft && currentTime + rideDistance <= ride.getTimeSpan().getFinish()) {
 			rides.add(ride);
-			timeLeft -= rideDistance
+			timeLeft -= rideDistance;
 			currentTime += rideDistance;
 			pos = ride.getTo();
 			return true;
