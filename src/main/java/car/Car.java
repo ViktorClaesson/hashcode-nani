@@ -25,7 +25,7 @@ public class Car {
 	public int optimalRoute(Ride ride){
 		int tempo = 0;
 		tempo +=currentPosition.distanceTo(ride.getFrom());
-		tempo+=((ride.getTimeSpan().getStart())-currentTime);
+		tempo +=((ride.getTimeSpan().getStart())-currentTime);
 		return tempo;
 	}
 
