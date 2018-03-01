@@ -2,11 +2,15 @@ package car;
 
 import utils.Point;
 
+import java.util.List;
+import java.util.StringJoiner;
+
 public class Car {
 	private int id;
 	private int timeLeft;
 	private Point pos;
 	private Ride ride;
+	private List<Integer> acceptedRides;
 
 	public Car(int id, int timeLeft) {
 		this.id = id;
@@ -18,6 +22,7 @@ public class Car {
 	public boolean addPassenger(Ride ride) {
 		if (ride == null && canYouGetThereOnTime(ride.getFrom(), pos.distanceTo(ride.getFrom()))) {
 			this.ride = ride;
+			acceptedRides.add(ride.getId());
 			return true;
 		} else {
 			return false;
@@ -34,5 +39,13 @@ public class Car {
 		} else {
 			return false;
 		}
+	}
+
+	@Override
+	public String toString() {
+		StringJoiner joiner = new StringJoiner(" ");
+		joiner.add(Integer.toString(id));
+		acceptedRides.forEach(id -> joiner.add(Integer.toString(id)));
+		return joiner.toString();
 	}
 }
