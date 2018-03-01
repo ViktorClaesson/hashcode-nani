@@ -21,6 +21,7 @@ public class Car {
 		lastTime = 0;
 		rides = new ArrayList<>();
 	}
+
 	public int optimalRoute(Ride ride){
 		int tempo = 0;
 		tempo +=currentPosition.distanceTo(ride.getFrom());
@@ -29,22 +30,12 @@ public class Car {
 	}
 
 	public boolean addPassenger(Ride ride) {
-		if ((pos.distanceTo(ride.getFrom()) + ride.getFrom().distanceTo(ride.getTo())) <= timeLeft) {
+		int rideDistance = pos.distanceTo(ride.getFrom()) + ride.getDistance();
+		if (rideDistance <= timeLeft && currentTime + rideDistance <= ride.getTimeSpan().getFinish()) {
 			rides.add(ride);
-			timeLeft -= ride.getTimeSpan().getTotalTime();
+			timeLeft -= rideDistance
+			currentTime += rideDistance;
 			pos = ride.getTo();
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	public boolean isThereEnoughTime(int time) {
-		return (timeLeft >= time);
-	}
-
-	public boolean canYouGetThereOnTime(Point pickUpPoint, int time) {
-		if (isThereEnoughTime(time) && pos.distanceTo(pickUpPoint) < time) {
 			return true;
 		} else {
 			return false;
