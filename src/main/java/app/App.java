@@ -13,7 +13,7 @@ import java.util.stream.IntStream;
 public class App {
 
     public static void main(String[] args) {
-        Input input = new Input("a_example.in");
+        Input input = new Input("b_should_be_easy.in");
         Config config = input.readConfig();
         List<Ride> rides = input.readRides();
         Solver solver = new Solver(config, rides);

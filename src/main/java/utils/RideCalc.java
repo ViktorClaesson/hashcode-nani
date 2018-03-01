@@ -33,7 +33,7 @@ public class RideCalc {
         }
         rides.remove(bestRide);
         car.currentPosition = bestRide.getTo();
-        car.addPassenger(bestRide, bestRideTime + atTime);
+        //car.addPassenger(bestRide, bestRideTime + atTime);
         return true;
     }
 }
