@@ -7,11 +7,11 @@ public class Ride {
     private TimeSpan timeSpan;
     private int id;
 
-    public Ride(Point from, Point to, TimeSpan ts, int id){
+    public Ride(int id, Point from, Point to, TimeSpan ts){
+        this.id = id;
         this.from = from;
         this.to = to;
         timeSpan = ts;
-        this.id = id;
     }
 
     public Point getFrom(){
