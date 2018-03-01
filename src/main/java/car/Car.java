@@ -29,6 +29,7 @@ public class Car {
 		if (canYouGetThereOnTime(ride.getFrom(), pos.distanceTo(ride.getFrom()))) {
 			rides.add(ride);
 			acceptedRides.add(ride.getId());
+			timeLeft -= pos.distanceTo(ride.getTo());
 			timeLeft -= ride.getTimeSpan().getTotalTime();
 			this.lastTime = lastTime;
 			return true;
