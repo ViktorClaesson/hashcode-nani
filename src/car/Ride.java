@@ -16,7 +16,7 @@ public class Ride {
         return from;
     }
 
-    public Point getto(){
+    public Point getTo(){
         return to;
     }
 
