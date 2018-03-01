@@ -8,13 +8,12 @@ import solver.Solver;
 import utils.Config;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class App {
-
-
     public static void main(String[] args) throws IOException {
 
         Input input;
@@ -22,41 +21,28 @@ public class App {
         List<Ride> rides;
         Solver solver;
         List<Car> result;
+        ArrayList<String> files = new ArrayList<>();
+        ArrayList<String> output = new ArrayList<>();
 
-        input = new Input("a_example.in");
-        config = input.readConfig();
-        rides = input.readRides();
-        solver = new Solver(config, rides);
-        result = solver.solve();
-        Output.writeResults("output_a.txt", result);
+        files.add("a_example.in");
+        files.add("b_should_be_easy.in");
+        files.add("c_no_hurry.in");
+        files.add("d_metropolis.in");
+        files.add("e_high_bonus.in");
 
-        input = new Input("b_should_be_easy.in");
-        config = input.readConfig();
-        rides = input.readRides();
-        solver = new Solver(config, rides);
-        result = solver.solve();
-        Output.writeResults("output_b.txt", result);
+        output.add("output_a.txt");
+        output.add("output_b.txt");
+        output.add("output_c.txt");
+        output.add("output_d.txt");
+        output.add("output_e.txt");
 
-        input = new Input("c_no_hurry.in");
-        config = input.readConfig();
-        rides = input.readRides();
-        solver = new Solver(config, rides);
-        result = solver.solve();
-        Output.writeResults("output_c.txt", result);
-
-        input = new Input("d_metropolis.in");
-        config = input.readConfig();
-        rides = input.readRides();
-        solver = new Solver(config, rides);
-        result = solver.solve();
-        Output.writeResults("output_d.txt", result);
-
-        input = new Input("e_high_bonus.in");
-        config = input.readConfig();
-        rides = input.readRides();
-        solver = new Solver(config, rides);
-        result = solver.solve();
-        Output.writeResults("output_e.txt", result);
-
+        for (int i = 0; i < 5; i++) {
+            input = new Input(files.get(i));
+            config = input.readConfig();
+            rides = input.readRides();
+            solver = new Solver(config, rides);
+            result = solver.nextSolveBoy();
+            Output.writeResults(output.get(i), result);
+        }
     }
 }

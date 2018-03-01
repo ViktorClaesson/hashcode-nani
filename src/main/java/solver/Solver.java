@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+import IO.Input;
 import car.Car;
 import car.Ride;
 import utils.RideCalc;
@@ -33,13 +34,15 @@ public class Solver {
 	}
 
     public List<Car> nextSolveBoy() {
-        List<Car> cars = IntStream.range(1, config.vehicles).mapToObj((id) -> new Car(config.steps)).collect(Collectors.toList());
+        List<Car> cars = Stream.generate(() -> new Car(config.steps)).limit(config.vehicles).collect(Collectors.toList());
 
         for (Car car : cars) {
             RideCalc.bestNextRide(car, rides);
+            System.out.println(car.rides);
+            System.out.println(rides.size());
         }
 
         return cars;
     }
-
 }
+//måste kolla om måste hinna fram.

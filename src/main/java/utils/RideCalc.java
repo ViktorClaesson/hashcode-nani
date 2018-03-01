@@ -21,19 +21,25 @@ public class RideCalc {
         Ride bestRide = null;
         int bestRideTime = Integer.MAX_VALUE;
         for (Ride ride : possibleRides) {
-            //
             int rideTime = carLocation.distanceTo(ride.getFrom());
+            //car can make it to ride?
             boolean canGetInTime = ride.getTimeSpan().withinSpan(atTime + rideTime);
             if (canGetInTime && rideTime < bestRideTime) {
+                //find best ride car can make it to.
                 bestRide = ride;
+                bestRideTime = rideTime;
             }
         }
+        //no more rides.
         if (bestRide == null) {
             return false;
         }
+        //can't take ride twice.
         rides.remove(bestRide);
+        //move car time and position.
         car.currentPosition = bestRide.getTo();
-        //car.addPassenger(bestRide, bestRideTime + atTime);
+        car.rides.add(bestRide);
+        car.lastTime = atTime + bestRideTime + bestRide.getTimeSpan().getFinish() - bestRide.getTimeSpan().getStart();
         return true;
     }
 }
