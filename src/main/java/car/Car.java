@@ -30,7 +30,7 @@ public class Car {
     }
 
 	public boolean addPassenger(Ride ride) {
-		int wait = Math.max(0, ride.getTimeSpan().getStart() - currentTime + pos.distanceTo(ride.getFrom()));
+		int wait = Math.max(0, ride.getTimeSpan().getStart() - (currentTime + pos.distanceTo(ride.getFrom())));
 		int rideDistance = pos.distanceTo(ride.getFrom()) + ride.getDistance();
 		if ((rideDistance + wait) <= timeLeft && (currentTime + rideDistance + wait) <= ride.getTimeSpan().getFinish()) {
 			rides.add(ride);
