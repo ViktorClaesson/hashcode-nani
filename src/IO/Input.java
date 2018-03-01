@@ -46,7 +46,7 @@ public class Input implements InputReader {
         Point from = new Point(numbers.get(0), numbers.get(1));
         Point to = new Point(numbers.get(1), numbers.get(2));
         TimeSpan ts = new TimeSpan(numbers.get(3), numbers.get(4));
-        return new Ride(id, from, to, ts);
+        return new Ride(from, to, ts, id);
     }
 
     @Override

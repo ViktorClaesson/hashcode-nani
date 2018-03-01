@@ -3,12 +3,14 @@ package car;
 import utils.Point;
 
 public class Car {
+	private int id;
 	private int timeLeft;
 	private Point pos;
 	private Ride ride;
 
-	public Car(int x, int y, int timeLeft) {
-		pos = new Point(x, y);
+	public Car(int id, int timeLeft) {
+		this.id = id;
+		pos = new Point(0, 0);
 		this.timeLeft = timeLeft;
 		ride = null;
 	}
@@ -20,10 +22,6 @@ public class Car {
 		} else {
 			return false;
 		}
-	}
-
-	public int timeLeft() {
-		return timeLeft;
 	}
 
 	public boolean isThereEnoughTime(int time) {
