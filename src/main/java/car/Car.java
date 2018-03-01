@@ -21,6 +21,12 @@ public class Car {
 		lastTime = 0;
 		rides = new ArrayList<>();
 	}
+	public int optimalRoute(Ride ride){
+		int tempo = 0;
+		tempo +=currentPosition.distanceTo(ride.getFrom());
+		tempo+=((ride.getTimeSpan().getStart())-currentTime);
+		return tempo;
+	}
 
 	public boolean addPassenger(Ride ride) {
 		if ((pos.distanceTo(ride.getFrom()) + ride.getFrom().distanceTo(ride.getTo())) <= timeLeft) {
