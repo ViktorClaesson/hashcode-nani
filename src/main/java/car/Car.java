@@ -12,6 +12,8 @@ public class Car {
 	private Point pos;
 	private ArrayList<Ride> rides;
 	private List<Integer> acceptedRides;
+	public int currentTime;
+	public Point currentPosition;
 
 	public int lastTime;
 
@@ -20,7 +22,7 @@ public class Car {
 		pos = new Point(0, 0);
 		this.timeLeft = timeLeft;
 		rides = new ArrayList<>();
-		lastTime = 0;
+		int currentTime = 0;
 	}
 
 	public boolean addPassenger(Ride ride) {
