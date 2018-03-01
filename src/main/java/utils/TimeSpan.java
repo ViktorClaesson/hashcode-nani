@@ -19,4 +19,8 @@ public class TimeSpan {
     public int getTotalTime(){
         return start + finish;
     }
+
+    public boolean withinSpan(int time){
+        return (start < time && time < finish);
+    }
 }
