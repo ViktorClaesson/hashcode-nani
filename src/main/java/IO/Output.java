@@ -1,5 +1,7 @@
 package IO;
 
+import car.Car;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -8,11 +10,11 @@ import java.util.List;
 
 public class Output {
 
-    public static void writeResults(String fileName, List<String> results) throws IOException {
+    public static void writeResults(String fileName, List<Car> results) throws IOException {
         BufferedWriter bw = new BufferedWriter(new FileWriter(new File(fileName)));
         results.forEach(s -> {
             try {
-                bw.write(s);
+                bw.write(s.toString() + "\n");
             } catch (IOException e) {
                 e.printStackTrace();
             }

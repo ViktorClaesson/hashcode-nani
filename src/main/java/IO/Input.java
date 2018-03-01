@@ -44,8 +44,8 @@ public class Input implements InputReader {
         String[] splitLines = line.split(" ");
         List<Integer> numbers = Arrays.stream(line.split(" ")).map(i -> Integer.parseInt(i)).collect(Collectors.toList());
         Point from = new Point(numbers.get(0), numbers.get(1));
-        Point to = new Point(numbers.get(1), numbers.get(2));
-        TimeSpan ts = new TimeSpan(numbers.get(3), numbers.get(4));
+        Point to = new Point(numbers.get(2), numbers.get(3));
+        TimeSpan ts = new TimeSpan(numbers.get(4), numbers.get(5));
         return new Ride(id, from, to, ts);
     }
 

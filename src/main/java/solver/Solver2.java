@@ -22,7 +22,7 @@ public class Solver2 {
     }
 
     public List<Car> solve() {
-        List<Car> cars = IntStream.range(1, config.vehicles).mapToObj((id) -> new Car(id, config.steps)).collect(Collectors.toList());
+        List<Car> cars = IntStream.range(1, config.vehicles).mapToObj((id) -> new Car(config.steps)).collect(Collectors.toList());
         int[][] temp;
 
             for (Car c : cars) {

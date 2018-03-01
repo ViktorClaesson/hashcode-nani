@@ -7,16 +7,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class RideCalc {
-    public static void bestNextRide(Car car, List<Ride> rides) {
-        while (hasNextRide(car, rides)) ;
-    }
+	public static void bestNextRide(Car car, List<Ride> rides) {
+		while (hasNextRide(car, rides)) ;
+	}
 
-    private static boolean hasNextRide(Car car, List<Ride> rides) {
-        Point carLocation = car.lastPosition();
-        int atTime = car.lastTime;
+	private static boolean hasNextRide(Car car, List<Ride> rides) {
+		Point carLocation = car.lastPosition();
+		int atTime = car.lastTime;
 
-        //Har vi redan missat riden?
-        List<Ride> possibleRides = rides.stream().filter(x -> x.getTimeSpan().getFinish() >= atTime).collect(Collectors.toList());
+		//Har vi redan missat riden?
+		List<Ride> possibleRides = rides.stream().filter(x -> x.getTimeSpan().getFinish() >= atTime).collect(Collectors.toList());
 
         Ride bestRide = null;
         int bestRideTime = Integer.MAX_VALUE;
