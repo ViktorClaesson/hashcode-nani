@@ -17,7 +17,7 @@ public class TimeSpan {
     }
 
     public int getTotalTime(){
-        return start + finish;
+        return finish - start;
     }
 
     public boolean withinSpan(int time){

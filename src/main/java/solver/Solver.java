@@ -3,6 +3,7 @@ package solver;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import car.Car;
 import car.Ride;
@@ -18,7 +19,7 @@ public class Solver {
 	}
 
 	public List<Car> solve() {
-		List<Car> cars = IntStream.range(1, config.vehicles).mapToObj((id) -> new Car(id, config.steps)).collect(Collectors.toList());
+		List<Car> cars = Stream.generate(() -> new Car(config.steps)).limit(config.vehicles).collect(Collectors.toList());
 		for (Ride r : rides) {
 			for (Car c : cars) {
 				if (c.addPassenger(r)) {

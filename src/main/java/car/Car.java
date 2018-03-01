@@ -7,27 +7,24 @@ import java.util.List;
 import java.util.StringJoiner;
 
 public class Car {
-	private int id;
 	private int timeLeft;
 	private Point pos;
-	private ArrayList<Ride> rides;
-	private List<Integer> acceptedRides;
+	private List<Ride> rides;
 
 	public int lastTime;
 
-	public Car(int id, int timeLeft) {
-		this.id = id;
+	public Car(int timeLeft) {
 		pos = new Point(0, 0);
 		this.timeLeft = timeLeft;
-		rides = new ArrayList<>();
 		lastTime = 0;
+		rides = new ArrayList<>();
 	}
 
 	public boolean addPassenger(Ride ride) {
-		if (canYouGetThereOnTime(ride.getFrom(), pos.distanceTo(ride.getFrom()))) {
+		if ((pos.distanceTo(ride.getFrom()) + ride.getFrom().distanceTo(ride.getTo())) <= timeLeft) {
 			rides.add(ride);
-			acceptedRides.add(ride.getId());
 			timeLeft -= ride.getTimeSpan().getTotalTime();
+			pos = ride.getTo();
 			return true;
 		} else {
 			return false;
@@ -53,8 +50,8 @@ public class Car {
 	@Override
 	public String toString() {
 		StringJoiner joiner = new StringJoiner(" ");
-		joiner.add(Integer.toString(id));
-		acceptedRides.forEach(id -> joiner.add(Integer.toString(id)));
+		joiner.add(Integer.toString(rides.size()));
+		rides.forEach(ride -> joiner.add(Integer.toString(ride.getId())));
 		return joiner.toString();
 	}
 }

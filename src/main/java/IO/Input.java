@@ -26,11 +26,11 @@ public class Input implements InputReader {
     private void init(String fileName) {
         {
             try {
-                BufferedReader br = new BufferedReader(new FileReader(new File("").getAbsolutePath() + "/inputs/" + fileName));
+                BufferedReader br = new BufferedReader(new FileReader(getClass().getResource(fileName).getPath()));
                 List<String> lines = br.lines().collect(Collectors.toList());
                 config = Config.parse(lines.get(0));
                 lines.remove(0);
-                List<Ride> rides = new ArrayList<>();
+                rides = new ArrayList<>();
                 for(int i = 0; i < lines.size();i++){
                     rides.add(createRide(i, lines.get(i)));
                 }
