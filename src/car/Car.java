@@ -22,10 +22,6 @@ public class Car {
 		}
 	}
 
-	public int timeLeft() {
-		return timeLeft;
-	}
-
 	public boolean isThereEnoughTime(int time) {
 		return (timeLeft >= time);
 	}
