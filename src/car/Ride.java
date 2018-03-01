@@ -3,5 +3,24 @@ import utils.Point;
 import utils.TimeSpan;
 
 public class Ride {
-    public Ride(Point from, Point to, TimeSpan ts){};
+    private Point from, to;
+    private TimeSpan timeSpan;
+
+    public Ride(Point from, Point to, TimeSpan ts){
+        this.from = from;
+        this.to = to;
+        timeSpan = ts;
+    }
+
+    public Point getFrom(){
+        return from;
+    }
+
+    public Point getto(){
+        return to;
+    }
+
+    public TimeSpan getTimeSpan(){
+        return timeSpan;
+    }
 }
