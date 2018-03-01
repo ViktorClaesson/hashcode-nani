@@ -25,11 +25,12 @@ public class Car {
 		int currentTime = 0;
 	}
 
-	public boolean addPassenger(Ride ride) {
+	public boolean addPassenger(Ride ride, int lastTime) {
 		if (canYouGetThereOnTime(ride.getFrom(), pos.distanceTo(ride.getFrom()))) {
 			rides.add(ride);
 			acceptedRides.add(ride.getId());
 			timeLeft -= ride.getTimeSpan().getTotalTime();
+			this.lastTime = lastTime;
 			return true;
 		} else {
 			return false;
@@ -49,13 +50,16 @@ public class Car {
 	}
 
 	public Point lastPosition(){
+		if (rides.isEmpty()){
+			return new Point(0,0);
+		}
 		return rides.get(rides.size()-1).getTo();
 	}
 
 	@Override
 	public String toString() {
 		StringJoiner joiner = new StringJoiner(" ");
-		joiner.add(Integer.toString(id));
+		joiner.add(Integer.toString(rides.size()));
 		acceptedRides.forEach(id -> joiner.add(Integer.toString(id)));
 		return joiner.toString();
 	}
