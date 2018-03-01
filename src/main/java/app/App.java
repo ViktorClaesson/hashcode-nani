@@ -20,5 +20,4 @@ public class App {
         List<Car> result = solver.solve();
         result.forEach(System.out::println);
     }
-
 }

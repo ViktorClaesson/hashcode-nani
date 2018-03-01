@@ -10,6 +10,8 @@ public class Car {
 	private int timeLeft;
 	private Point pos;
 	private List<Ride> rides;
+	public int currentTime;
+	public Point currentPosition;
 
 	public int lastTime;
 
@@ -44,6 +46,9 @@ public class Car {
 	}
 
 	public Point lastPosition(){
+		if (rides.isEmpty()){
+			return new Point(0,0);
+		}
 		return rides.get(rides.size()-1).getTo();
 	}
 

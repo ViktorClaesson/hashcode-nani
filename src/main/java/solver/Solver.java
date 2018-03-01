@@ -7,9 +7,11 @@ import java.util.stream.Stream;
 
 import car.Car;
 import car.Ride;
+import utils.RideCalc;
 import utils.Config;
 
 public class Solver {
+
 	List<Ride> rides;
 	Config config;
 
@@ -29,5 +31,15 @@ public class Solver {
 		}
 		return cars;
 	}
+
+    public List<Car> nextSolveBoy() {
+        List<Car> cars = IntStream.range(1, config.vehicles).mapToObj((id) -> new Car(config.steps)).collect(Collectors.toList());
+
+        for (Car car : cars) {
+            RideCalc.bestNextRide(car, rides);
+        }
+
+        return cars;
+    }
 
 }
