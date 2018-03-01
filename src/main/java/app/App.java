@@ -11,7 +11,8 @@ import java.util.List;
 public class App {
 
     public static void main(String[] args) {
-        System.out.println(App.class.getResource("a_example.in"));
+        System.out.println(App.class.getResource(""));
+
         /*
         Input input = new Input("a_example.in");
         Config config = input.readConfig();
